@@ -6,6 +6,7 @@ export const Container = styled.header`
   justify-content: center;
   align-items: center;
   height: 88.23px;
+  border-bottom: 2px solid var(--silver);
 `
 export const ItemsContainer = styled.div`
   display: flex;
@@ -60,8 +61,7 @@ export const SearchContainer = styled.div`
     background: var(--background);
     border-radius: 8px;
     padding: 10px;
-    border: 1px solid var(--gray);
-    box-shadow: rgba();
+    border: 1px solid var(--white);
   }
 `
 
