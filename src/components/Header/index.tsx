@@ -1,14 +1,18 @@
 import Image from 'next/image'
+import { useState } from 'react'
 import {
   ButtonContainer,
   Container,
   ItemsContainer,
   NavContainer,
+  SearchContainer,
   UtilsContainer,
   WineBoxContainer
 } from './styles'
 
 export const Header = () => {
+  const [isSearching, setIsSearching] = useState(false)
+
   return (
     <Container>
       <ItemsContainer>
@@ -47,12 +51,18 @@ export const Header = () => {
           </nav>
         </NavContainer>
 
+        {isSearching && (
+          <SearchContainer>
+            <input type="text" />
+          </SearchContainer>
+        )}
+
         <UtilsContainer>
           <ButtonContainer>
-            <button type="button">
+            <button type="button" onClick={() => setIsSearching(!isSearching)}>
               <Image
                 src="/images/search.svg"
-                alt="Imagem do perfil do usuário"
+                alt="Ícone para abrir o campo de pesquisa"
                 width={31}
                 height={31}
               />
@@ -63,7 +73,7 @@ export const Header = () => {
             <button>
               <Image
                 src="/images/profile.svg"
-                alt="Imagem do perfil do usuário"
+                alt="Ícone do perfil do usuário"
                 width={31}
                 height={31}
               />
