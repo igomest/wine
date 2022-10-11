@@ -15,13 +15,29 @@ import {
   Title
 } from './styles'
 
-export const ProductCard = () => {
+interface ProductCardProps {
+  image: string
+  name: string
+  price: number
+  discount: number
+  priceMember: number
+  priceNonMember: number
+}
+
+export const ProductCard = ({
+  name,
+  image,
+  price,
+  discount,
+  priceMember,
+  priceNonMember
+}: ProductCardProps) => {
   return (
     <Container>
       <Card>
         <div>
           <Image
-            src="/images/wine.png"
+            src={image}
             alt="Imagem do produto vinho"
             width={198}
             height={178}
@@ -29,25 +45,25 @@ export const ProductCard = () => {
         </div>
 
         <Title>
-          <p>Bacalhôa Meia Pipa Private Selection Castelão Syrah 2014</p>
+          <p>{name}</p>
         </Title>
 
         <ContentContainer>
           <PromotionContainer>
-            <PreviousPrice>RS37,40</PreviousPrice>
+            <PreviousPrice>R${price}</PreviousPrice>
 
             <Promotion>
-              <p>60% OFF</p>
+              <p>{discount}% OFF</p>
             </Promotion>
           </PromotionContainer>
 
           <PriceContainer>
             <ProductTitle>SÓCIO WINE</ProductTitle>
-            <Price>RS30,00</Price>
+            <Price>RS{priceMember}</Price>
           </PriceContainer>
 
           <NonMember>
-            <NonMemberPrice>NÃO SÓCIO R$37,40</NonMemberPrice>
+            <NonMemberPrice>NÃO SÓCIO R${priceNonMember}</NonMemberPrice>
           </NonMember>
         </ContentContainer>
       </Card>

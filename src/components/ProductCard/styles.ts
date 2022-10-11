@@ -104,6 +104,7 @@ export const ButtonContainer = styled.div`
     height: 39px;
     border: none;
     border-radius: 3px;
+    box-shadow: 0px 0.973384px 1.94677px rgba(0, 0, 0, 0.2);
 
     &:hover {
       filter: brightness(0.9);
