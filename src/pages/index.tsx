@@ -1,6 +1,7 @@
 import { FilterByPrice } from 'components/FilterByPrice'
 import { Pagination } from 'components/Pagination'
 import { ProductCard } from 'components/ProductCard'
+import { Product } from 'interfaces/types'
 import { useEffect, useState } from 'react'
 import { api } from 'services/api'
 
@@ -9,20 +10,9 @@ import {
   FilterContainer,
   FoundProductsTitle,
   ItemsContainer,
-  PaginationContainer,
   Products,
   ProductsContainer
 } from './home.styles'
-
-interface Product {
-  id: number
-  image: string
-  name: string
-  price: number
-  discount: number
-  priceMember: number
-  priceNonMember: number
-}
 
 interface ProductData {
   page: number
@@ -75,14 +65,12 @@ const Home = () => {
           </Products>
         </ProductsContainer>
       </ItemsContainer>
-      {/* 
-      <PaginationContainer> */}
+
       <Pagination
         currentPage={page}
         totalPages={data.totalItems}
         onPageChange={setPage}
       />
-      {/* </PaginationContainer> */}
     </Container>
   )
 }

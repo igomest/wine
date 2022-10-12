@@ -1,12 +1,7 @@
+import { PaginationProps } from 'interfaces/props'
 import { PaginationItem } from './PaginationItem'
-import { Container } from './styles'
 
-interface PaginationProps {
-  totalPages: number
-  itemsPerPage?: number
-  currentPage?: number
-  onPageChange: (page: number) => void
-}
+import { Container } from './styles'
 
 const siblingsCount = 1
 

@@ -1,3 +1,5 @@
+import { ProductCardProps } from 'interfaces/props'
+
 import Image from 'next/image'
 import {
   ButtonContainer,
@@ -14,15 +16,6 @@ import {
   PromotionContainer,
   Title
 } from './styles'
-
-interface ProductCardProps {
-  image: string
-  name: string
-  price: number
-  discount: number
-  priceMember: number
-  priceNonMember: number
-}
 
 export const ProductCard = ({
   name,

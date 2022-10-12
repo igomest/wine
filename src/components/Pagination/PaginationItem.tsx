@@ -1,10 +1,5 @@
+import { PaginationItemProps } from 'interfaces/props'
 import { Button, CurrentPageButton } from './styles'
-
-interface PaginationItemProps {
-  number: number
-  isCurrent?: boolean
-  onPageChange: (page: number) => void
-}
 
 export const PaginationItem = ({
   isCurrent = false,
