@@ -59,7 +59,7 @@ export const ProductCard = ({
 
           <PriceContainer>
             <ProductTitle>SÓCIO WINE</ProductTitle>
-            <Price>RS{priceMember}</Price>
+            <Price>R${priceMember}</Price>
           </PriceContainer>
 
           <NonMember>

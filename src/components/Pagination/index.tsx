@@ -1,4 +1,5 @@
 import { PaginationItem } from './PaginationItem'
+import { Container } from './styles'
 
 interface PaginationProps {
   totalPages: number
@@ -19,11 +20,11 @@ const generatePagesArray = (from: number, to: number) => {
 
 export const Pagination = ({
   totalPages,
-  itemsPerPage = 10,
+  itemsPerPage = 9,
   currentPage = 1,
   onPageChange
 }: PaginationProps) => {
-  const lastPage = Math.floor(totalPages / itemsPerPage)
+  const lastPage = Math.ceil(totalPages / itemsPerPage)
 
   const previousPages =
     currentPage > 1
@@ -39,45 +40,43 @@ export const Pagination = ({
       : []
 
   return (
-    <div>
-      <div>
-        {currentPage > 1 + siblingsCount && <p>...</p>}
+    <Container>
+      {currentPage > 1 + siblingsCount && <p>...</p>}
 
-        {previousPages.length > 0 &&
-          previousPages.map((page) => {
-            return (
-              <PaginationItem
-                onPageChange={onPageChange}
-                key={page}
-                number={page}
-              />
-            )
-          })}
+      {previousPages.length > 0 &&
+        previousPages.map((page) => {
+          return (
+            <PaginationItem
+              onPageChange={onPageChange}
+              key={page}
+              number={page}
+            />
+          )
+        })}
 
-        <PaginationItem
-          onPageChange={onPageChange}
-          number={currentPage}
-          isCurrent
-        />
+      <PaginationItem
+        onPageChange={onPageChange}
+        number={currentPage}
+        isCurrent
+      />
 
-        {nextPages.length > 0 &&
-          nextPages.map((page) => {
-            return (
-              <PaginationItem
-                onPageChange={onPageChange}
-                key={page}
-                number={page}
-              />
-            )
-          })}
+      {nextPages.length > 0 &&
+        nextPages.map((page) => {
+          return (
+            <PaginationItem
+              onPageChange={onPageChange}
+              key={page}
+              number={page}
+            />
+          )
+        })}
 
-        {currentPage + siblingsCount < lastPage && (
-          <>
-            {currentPage + 1 + siblingsCount < lastPage && <p>...</p>}
-            <PaginationItem onPageChange={onPageChange} number={lastPage} />
-          </>
-        )}
-      </div>
-    </div>
+      {currentPage + siblingsCount < lastPage && (
+        <>
+          {currentPage + 1 + siblingsCount < lastPage && <p>...</p>}
+          <PaginationItem onPageChange={onPageChange} number={lastPage} />
+        </>
+      )}
+    </Container>
   )
 }

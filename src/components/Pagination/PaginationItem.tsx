@@ -1,3 +1,5 @@
+import { Button, CurrentPageButton } from './styles'
+
 interface PaginationItemProps {
   number: number
   isCurrent?: boolean
@@ -10,12 +12,12 @@ export const PaginationItem = ({
   onPageChange
 }: PaginationItemProps) => {
   if (isCurrent) {
-    return <button type="button">{number}</button>
+    return <CurrentPageButton type="button">{number}</CurrentPageButton>
   }
 
   return (
-    <button type="button" onClick={() => onPageChange(number)}>
+    <Button type="button" onClick={() => onPageChange(number)}>
       {number}
-    </button>
+    </Button>
   )
 }

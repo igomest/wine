@@ -1,14 +1,15 @@
 import { FilterByPrice } from 'components/FilterByPrice'
 import { Pagination } from 'components/Pagination'
 import { ProductCard } from 'components/ProductCard'
-import { GetServerSideProps, GetStaticProps } from 'next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { api } from 'services/api'
+
 import {
   Container,
   FilterContainer,
   FoundProductsTitle,
   ItemsContainer,
+  PaginationContainer,
   Products,
   ProductsContainer
 } from './home.styles'
@@ -23,20 +24,26 @@ interface Product {
   priceNonMember: number
 }
 
-interface Data {
+interface ProductData {
   page: number
   totalPages: number
-  itemsPerPage: number
   totalItems: number
 }
 
-interface ProductProps {
-  data: Data
-  products: Product[]
-}
-
-const Home = ({ products, data }: ProductProps) => {
+const Home = () => {
+  const [data, setData] = useState<any>({})
   const [page, setPage] = useState(1)
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    api
+      .get(`/products?page=${page}&limit=9`)
+      .then((res) => {
+        setData(res.data)
+        setProducts(res.data.items)
+      })
+      .catch((err) => console.log(err.response.data))
+  }, [page])
 
   return (
     <Container>
@@ -48,7 +55,7 @@ const Home = ({ products, data }: ProductProps) => {
         <ProductsContainer>
           <FoundProductsTitle>
             <p>
-              <strong>49</strong>
+              <strong>{data.totalItems}</strong>
             </p>
             <p>produtos encontrados</p>
           </FoundProductsTitle>
@@ -68,38 +75,16 @@ const Home = ({ products, data }: ProductProps) => {
           </Products>
         </ProductsContainer>
       </ItemsContainer>
+      {/* 
+      <PaginationContainer> */}
       <Pagination
         currentPage={page}
-        totalPages={data.totalPages}
+        totalPages={data.totalItems}
         onPageChange={setPage}
       />
+      {/* </PaginationContainer> */}
     </Container>
   )
 }
 
 export default Home
-
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get(`?page=1&limit=10`)
-  console.log({ data })
-
-  const products = data.items.map((product: Product) => {
-    return {
-      id: product.id,
-      image: product.image,
-      name: product.name,
-      price: product.price,
-      discount: product.discount,
-      priceMember: product.priceMember,
-      priceNonMember: product.priceNonMember
-    }
-  })
-
-  return {
-    props: {
-      data,
-      products
-    },
-    revalidate: 60 * 60 * 24 // 24 hours
-  }
-}

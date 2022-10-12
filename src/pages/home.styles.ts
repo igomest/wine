@@ -5,13 +5,16 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   justify-content: flex-start;
-  padding: 8rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
 `
 export const ItemsContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 71%;
   height: 100%;
-  justify-content: space-around;
+  justify-content: flex-start;
+  margin-top: 3rem;
 `
 
 export const FilterContainer = styled.div`
@@ -20,7 +23,8 @@ export const FilterContainer = styled.div`
 `
 export const ProductsContainer = styled.div`
   width: 53rem;
-  height: auto;
+  height: 100%;
+  margin-left: 2.5rem;
 `
 
 export const FoundProductsTitle = styled.div`
@@ -37,4 +41,12 @@ export const Products = styled.div`
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
+`
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
 `

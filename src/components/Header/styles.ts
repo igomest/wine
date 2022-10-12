@@ -18,7 +18,7 @@ export const ItemsContainer = styled.div`
 
 export const NavContainer = styled.div`
   display: flex;
-  width: 37rem;
+  width: 44rem;
   height: 100%;
   justify-content: space-evenly;
   align-items: center;
@@ -33,9 +33,10 @@ export const NavContainer = styled.div`
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      width: 86%;
+      width: 78%;
       height: 100%;
       list-style: none;
+      margin-left: 5rem;
 
       li {
         a {
