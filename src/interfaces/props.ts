@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 export interface PaginationProps {
   totalPages: number
   itemsPerPage?: number
@@ -18,4 +20,8 @@ export interface ProductCardProps {
   discount: number
   priceMember: number
   priceNonMember: number
+}
+
+export interface ProductsProviderProps {
+  children: ReactNode
 }

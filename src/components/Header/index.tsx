@@ -1,3 +1,4 @@
+import { Search } from 'components/Search'
 import Image from 'next/image'
 import { useState } from 'react'
 import {
@@ -5,7 +6,6 @@ import {
   Container,
   ItemsContainer,
   NavContainer,
-  SearchContainer,
   UtilsContainer,
   WineBoxContainer
 } from './styles'
@@ -51,11 +51,7 @@ export const Header = () => {
           </nav>
         </NavContainer>
 
-        {isSearching && (
-          <SearchContainer>
-            <input type="text" />
-          </SearchContainer>
-        )}
+        {isSearching && <Search />}
 
         <UtilsContainer>
           <ButtonContainer>

@@ -1,3 +1,5 @@
+import { useProducts } from 'components/hooks/useProducts'
+import { useState } from 'react'
 import { Container, Title } from './styles'
 
 export const FilterByPrice = () => {

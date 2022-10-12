@@ -7,3 +7,11 @@ export interface Product {
   priceMember: number
   priceNonMember: number
 }
+
+export interface ProductsContextData {
+  data: any
+  products: Product[]
+  page: number
+  setPage: (page: number) => void
+  setSearch: (search: string) => void
+}

@@ -1,4 +1,5 @@
 import { FilterByPrice } from 'components/FilterByPrice'
+import { useProducts } from 'components/hooks/useProducts'
 import { Pagination } from 'components/Pagination'
 import { ProductCard } from 'components/ProductCard'
 import { Product } from 'interfaces/types'
@@ -21,19 +22,7 @@ interface ProductData {
 }
 
 const Home = () => {
-  const [data, setData] = useState<any>({})
-  const [page, setPage] = useState(1)
-  const [products, setProducts] = useState<Product[]>([])
-
-  useEffect(() => {
-    api
-      .get(`/products?page=${page}&limit=9`)
-      .then((res) => {
-        setData(res.data)
-        setProducts(res.data.items)
-      })
-      .catch((err) => console.log(err.response.data))
-  }, [page])
+  const { products, data, page, setPage } = useProducts()
 
   return (
     <Container>
