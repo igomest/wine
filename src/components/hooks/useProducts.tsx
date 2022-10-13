@@ -13,20 +13,20 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
   const [page, setPage] = useState(1)
   const [products, setProducts] = useState<Product[]>([])
   const [search, setSearch] = useState('')
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     async function loadProducts() {
-      setLoading(true)
+      setIsLoading(true)
       try {
         const response = await api.get(`/products?page=${page}&limit=9`)
         setData(response.data)
         setProducts(response.data.items)
-        setLoading(false)
+        setIsLoading(false)
 
         return response.data
       } catch (err) {
-        setLoading(false)
+        setIsLoading(false)
         console.log(err.response.data)
       }
     }
@@ -50,7 +50,14 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
 
   return (
     <ProductsContext.Provider
-      value={{ data, page, setPage, products: productsFiltered, setSearch }}
+      value={{
+        data,
+        page,
+        setPage,
+        products: productsFiltered,
+        setSearch,
+        isLoading
+      }}
     >
       {children}
     </ProductsContext.Provider>

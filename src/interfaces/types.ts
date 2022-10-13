@@ -23,4 +23,5 @@ export interface ProductsContextData {
   page: number
   setPage: (page: number) => void
   setSearch: (search: string) => void
+  isLoading?: boolean
 }

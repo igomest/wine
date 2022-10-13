@@ -1,10 +1,8 @@
-import { FilterByPrice } from 'components/FilterByPrice'
 import { useProducts } from 'components/hooks/useProducts'
+
+import { FilterByPrice } from 'components/FilterByPrice'
 import { Pagination } from 'components/Pagination'
 import { ProductCard } from 'components/ProductCard'
-import { Product } from 'interfaces/types'
-import { useEffect, useState } from 'react'
-import { api } from 'services/api'
 
 import {
   Container,
@@ -22,7 +20,7 @@ interface ProductData {
 }
 
 const Home = () => {
-  const { products, data, page, setPage } = useProducts()
+  const { products, data, page, setPage, isLoading } = useProducts()
 
   return (
     <Container>
@@ -31,36 +29,42 @@ const Home = () => {
           <FilterByPrice />
         </FilterContainer>
 
-        <ProductsContainer>
-          <FoundProductsTitle>
-            <p>
-              <strong>{data.totalItems}</strong>
-            </p>
-            <p>produtos encontrados</p>
-          </FoundProductsTitle>
+        {isLoading ? (
+          <h2>Loading...</h2>
+        ) : (
+          <>
+            <ProductsContainer>
+              <FoundProductsTitle>
+                <p>
+                  <strong>{data.totalItems}</strong>
+                </p>
+                <p>produtos encontrados</p>
+              </FoundProductsTitle>
 
-          <Products>
-            {products?.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product.image}
-                name={product.name}
-                price={product.price}
-                discount={product.discount}
-                priceMember={product.priceMember}
-                priceNonMember={product.priceNonMember}
-              />
-            ))}
-          </Products>
-        </ProductsContainer>
+              <Products>
+                {products?.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    image={product.image}
+                    name={product.name}
+                    price={product.price}
+                    discount={product.discount}
+                    priceMember={product.priceMember}
+                    priceNonMember={product.priceNonMember}
+                  />
+                ))}
+
+                <Pagination
+                  currentPage={page}
+                  totalPages={data.totalItems}
+                  onPageChange={setPage}
+                />
+              </Products>
+            </ProductsContainer>
+          </>
+        )}
       </ItemsContainer>
-
-      <Pagination
-        currentPage={page}
-        totalPages={data.totalItems}
-        onPageChange={setPage}
-      />
     </Container>
   )
 }

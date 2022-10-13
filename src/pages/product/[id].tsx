@@ -33,6 +33,10 @@ const Product = () => {
 
   const product = products.find((product) => product.id === Number(id))
 
+  if (!product) {
+    return <p>Carregando...</p>
+  }
+
   return (
     <Container>
       <ContentContainer>
