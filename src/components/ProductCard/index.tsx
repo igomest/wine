@@ -1,6 +1,7 @@
 import { ProductCardProps } from 'interfaces/props'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   ButtonContainer,
   Card,
@@ -18,6 +19,7 @@ import {
 } from './styles'
 
 export const ProductCard = ({
+  id,
   name,
   image,
   price,
@@ -28,14 +30,18 @@ export const ProductCard = ({
   return (
     <Container>
       <Card>
-        <div>
-          <Image
-            src={image}
-            alt="Imagem do produto vinho"
-            width={198}
-            height={178}
-          />
-        </div>
+        <Link href={`/product/${id}`}>
+          <a>
+            <div>
+              <Image
+                src={image}
+                alt="Imagem do produto vinho"
+                width={198}
+                height={178}
+              />
+            </div>
+          </a>
+        </Link>
 
         <Title>
           <p>{name}</p>

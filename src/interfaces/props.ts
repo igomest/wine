@@ -14,6 +14,16 @@ export interface PaginationItemProps {
 }
 
 export interface ProductCardProps {
+  id: number
+  image: string
+  name: string
+  price: number
+  discount: number
+  priceMember: number
+  priceNonMember: number
+}
+
+export interface ProductPageProps {
   image: string
   name: string
   price: number

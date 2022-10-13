@@ -13,15 +13,25 @@ export const ProductsProvider = ({ children }: ProductsProviderProps) => {
   const [page, setPage] = useState(1)
   const [products, setProducts] = useState<Product[]>([])
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    api
-      .get(`/products?page=${page}&limit=9`)
-      .then((res) => {
-        setData(res.data)
-        setProducts(res.data.items)
-      })
-      .catch((err) => console.log(err.response.data))
+    async function loadProducts() {
+      setLoading(true)
+      try {
+        const response = await api.get(`/products?page=${page}&limit=9`)
+        setData(response.data)
+        setProducts(response.data.items)
+        setLoading(false)
+
+        return response.data
+      } catch (err) {
+        setLoading(false)
+        console.log(err.response.data)
+      }
+    }
+
+    loadProducts()
   }, [page])
 
   const productsFiltered = products.filter((product) => {

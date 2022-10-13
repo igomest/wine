@@ -1,5 +1,8 @@
+import { useProducts } from 'components/hooks/useProducts'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import {
   Container,
@@ -23,6 +26,13 @@ import {
 } from './styles'
 
 const Product = () => {
+  const router = useRouter()
+  const { id } = router.query
+
+  const { products } = useProducts()
+
+  const product = products.find((product) => product.id === Number(id))
+
   return (
     <Container>
       <ContentContainer>
@@ -43,7 +53,7 @@ const Product = () => {
 
         <ImageContainer>
           <Image
-            src="/images/wine-image.png"
+            src={product.image}
             alt="Imagem de um vinho para comprar"
             width={381}
             height={579}
@@ -53,7 +63,7 @@ const Product = () => {
         <Content>
           <ItemsContainer>
             <ProductLocationContainer>
-              <p>Vinhos</p>
+              <p>{product.type}</p>
               <Image
                 src="/images/arrow.svg"
                 alt="Ícone de uma seta indicando a localização do produto"
@@ -61,30 +71,30 @@ const Product = () => {
                 height={10}
               />
 
-              <p>Estados Unidos</p>
+              <p>{product.country}</p>
               <Image
-                src="/images/arrow.svg"
+                src={product.flag}
                 alt="Ícone de uma seta indicando a localização do produto"
                 width={10}
                 height={10}
               />
 
-              <p>Califórnia</p>
+              <p>{product.region}</p>
             </ProductLocationContainer>
 
             <TitleContainer>
-              <h2>Apothic Red 2019</h2>
+              <h2>{product.name}</h2>
               <LocationDescription>
                 <Image
-                  src="/images/spain.svg"
+                  src={product.flag}
                   alt="Ícone do país de origem do produto"
                   width={16}
                   height={16}
                 />
-                <p>Estados Unidos</p>
-                <p>Tinto</p>
-                <p>Meio Seco/Demi-Sec</p>
-                <p>750 ml</p>
+                <p>{product.country}</p>
+                <p>{product.type}</p>
+                <p>{product.classification}</p>
+                <p>{product.size}</p>
                 <span>
                   <Image
                     src="/images/star.svg"
@@ -107,7 +117,7 @@ const Product = () => {
                     height={13.2}
                   />
                 </span>
-                <p>(2)</p>
+                <p>({product.avaliations})</p>
               </LocationDescription>
             </TitleContainer>
           </ItemsContainer>
@@ -115,21 +125,15 @@ const Product = () => {
           <PriceContainer>
             <Price>
               <Real>R$</Real>
-              <Value>63,67</Value>
+              <Value>{product.priceMember}</Value>
             </Price>
 
-            <Warning>NÃO SÓCIO R$120,95/UN.</Warning>
+            <Warning>NÃO SÓCIO R${product.priceNonMember}.</Warning>
           </PriceContainer>
 
           <DescriptionContainer>
             <h4>Comentário do Sommelier</h4>
-            <p>
-              Produzido no terroir californiano, esse tinto mescla as variedades
-              Zinfandel, Syrah, Cabernet Sauvignon e Merlot. Apothic é um vinho
-              inspirado nas antigas Apothecas (adegas subterrâneas), um lugar
-              misterioso onde há mais de 800 anos os viticultores misturavam e
-              armazenavam seus cobiçados vinhos.
-            </p>
+            <p>{product.sommelierComment}</p>
           </DescriptionContainer>
 
           <ButtonContainer>
