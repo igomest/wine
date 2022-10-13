@@ -18,7 +18,7 @@ export const ItemsContainer = styled.div`
 
 export const NavContainer = styled.div`
   display: flex;
-  width: 37rem;
+  width: 44rem;
   height: 100%;
   justify-content: space-evenly;
   align-items: center;
@@ -33,9 +33,10 @@ export const NavContainer = styled.div`
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      width: 86%;
+      width: 78%;
       height: 100%;
       list-style: none;
+      margin-left: 5rem;
 
       li {
         a {
@@ -45,23 +46,6 @@ export const NavContainer = styled.div`
         }
       }
     }
-  }
-`
-export const SearchContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 29rem;
-  height: 4rem;
-  margin-right: 2.5rem;
-
-  input {
-    width: 100%;
-    height: 3rem;
-    border: none;
-    background: var(--background);
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid var(--white);
   }
 `
 

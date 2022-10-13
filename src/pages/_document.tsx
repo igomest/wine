@@ -52,6 +52,11 @@ export default class MyDocument extends Document {
             href="http://fonts.cdnfonts.com/css/neo-sans-std"
             rel="stylesheet"
           />
+
+          <link
+            href="https://fonts.googleapis.com/css2?family=Saira&display=swap"
+            rel="stylesheet"
+          />
         </Head>
 
         <body>
