@@ -1,4 +1,5 @@
 export interface Product {
+  // toString: () => any
   id: number
   image: string
   name: string

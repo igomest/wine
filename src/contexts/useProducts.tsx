@@ -1,4 +1,4 @@
-import { Product, ProductsContextData } from '../../interfaces/types'
+import { Product, ProductsContextData } from 'interfaces/types'
 import { ProductsProviderProps } from 'interfaces/props'
 
 import { createContext, useState, useEffect, useContext } from 'react'

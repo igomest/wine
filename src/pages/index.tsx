@@ -1,4 +1,4 @@
-import { useProducts } from 'components/hooks/useProducts'
+import { useProducts } from 'contexts/useProducts'
 
 import { FilterByPrice } from 'components/FilterByPrice'
 import { Pagination } from 'components/Pagination'

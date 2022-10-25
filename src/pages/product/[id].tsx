@@ -1,4 +1,5 @@
-import { useProducts } from 'components/hooks/useProducts'
+import { useCart } from 'contexts/useCart'
+import { useProducts } from 'contexts/useProducts'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -30,8 +31,19 @@ const Product = () => {
   const { id } = router.query
 
   const { products } = useProducts()
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    cartQuantity
+  } = useCart()
 
   const product = products.find((product) => product.id === Number(id))
+
+  // const quantity = getItemQuantity(product.id)
+  // console.log(quantity)
+
+  console.log(increaseCartQuantity)
 
   if (!product) {
     return <p>Carregando...</p>
@@ -142,9 +154,19 @@ const Product = () => {
 
           <ButtonContainer>
             <CounterButtonContainer>
-              <button type="button">-</button>
-              <p>1</p>
-              <button type="button">+</button>
+              <button
+                type="button"
+                onClick={() => decreaseCartQuantity(product.id)}
+              >
+                -
+              </button>
+              <p>{cartQuantity}</p>
+              <button
+                type="button"
+                onClick={() => increaseCartQuantity(product.id)}
+              >
+                +
+              </button>
             </CounterButtonContainer>
 
             <Button>

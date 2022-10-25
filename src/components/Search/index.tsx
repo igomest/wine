@@ -1,4 +1,4 @@
-import { useProducts } from 'components/hooks/useProducts'
+import { useProducts } from 'contexts/useProducts'
 import { SearchContainer } from './styles'
 
 export const Search = () => {
